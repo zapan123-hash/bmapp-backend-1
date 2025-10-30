@@ -2,6 +2,7 @@
 header("Content-Type: application/json");
 require "db.php";
 
+// Get POST values
 $email    = $_POST['email']    ?? '';
 $password = $_POST['password'] ?? '';
 
@@ -10,6 +11,7 @@ if (empty($email) || empty($password)) {
     exit;
 }
 
+// Query user
 $stmt = $conn->prepare("SELECT id, name, password FROM users1 WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
